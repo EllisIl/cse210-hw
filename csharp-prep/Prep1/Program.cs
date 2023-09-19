@@ -1,9 +1,8 @@
-using System;
-
 class Program
 {
     static void Main(string[] args)
     {
+        Console.BackgroundColor = ConsoleColor.Red;
         Console.Write("What is your first name? ");
         string first_name = Console.ReadLine();
 
