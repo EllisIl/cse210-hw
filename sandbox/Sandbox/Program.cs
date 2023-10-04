@@ -4,6 +4,17 @@ class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Hello Sandbox World!");
+        NewEntry lessConfusing = new()
+        {
+            entry = "This is a new string"
+        };
+
+        NewEntry moreConfusing = new()
+        {
+            entry = "Different string."
+        };
+        
+        lessConfusing.Print();
+        moreConfusing.Print();
     }
 }
