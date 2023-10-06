@@ -2,6 +2,10 @@ class NewEntry
 {
     public string entry;
     public string date;
+    public string prompt;
+    public List<string> entries = new();
+    public List<string> prompts = new();
+    public List<string> dates = new();
 
     static string RandomPrompt() // gathers a random prompt from a csv file
     {
@@ -23,11 +27,15 @@ class NewEntry
 
     public void GetUserInput() // displays the random prompt, then gets the user's input
     {
+        //save the prompt to a string for later use
         string selectedPrompt = RandomPrompt();
 
+        //display the prompt to the user
         Console.WriteLine($"Your Prompt: {selectedPrompt}");
 
+        //save the input, time, and prompt to the class variables
         entry = Console.ReadLine();
         date = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+        prompt = selectedPrompt;
     }
 }
