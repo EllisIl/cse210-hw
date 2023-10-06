@@ -19,14 +19,14 @@ class EditFile
             for (int i = 0; i < entries.Count; i++)
             {
 
-            //write each entry from the list into the csv file, separating using ~|
+                //write each entry from the list into the csv file, separating using ~|
                 writer.WriteLine(string.Join("~|", prompts[i], entries[i], dates[i]));
             }
         }
         Console.WriteLine("Saved!");
     }
 
-    public void LoadJournal()
+    public void DisplayJournal()
     {
         //get the filepath
         PromptUser();
