@@ -1,41 +1,24 @@
 class NewEntry
 {
-    public string entry;
-    public string date;
-    public string prompt;
-    public List<string> entries = new();
-    public List<string> prompts = new();
-    public List<string> dates = new();
+    public List<string> Entries { get; } = new();
+    public List<string> Prompts { get; } = new();
+    public List<string> Dates { get; } = new();
 
-    static string RandomPrompt() // gathers a random prompt from a csv file
+    private static string RandomPrompt()
     {
-        // gather all the information from the csv file
         string filePath = "prompts.csv";
         string[] lines = File.ReadAllLines(filePath);
-
-        // generate a random number and round it to be somewhere 
-        // in the range of the list of prompts
         Random random = new();
-        int randomLineNumber = random.Next(0, lines.Length); 
-
-        // get a random item from the list using the random number
-        string randomPrompt = lines[randomLineNumber];
-    
-        // return the random prompt
-        return randomPrompt;
+        int randomLineNumber = random.Next(0, lines.Length);
+        return lines[randomLineNumber];
     }
 
-    public void GetUserInput() // displays the random prompt, then gets the user's input
+    public void GetUserInput()
     {
-        //save the prompt to a string for later use
         string selectedPrompt = RandomPrompt();
-
-        //display the prompt to the user
         Console.WriteLine($"Your Prompt: {selectedPrompt}");
-
-        //save the input, time, and prompt to the class variables
-        entry = Console.ReadLine();
-        date = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-        prompt = selectedPrompt;
+        Entries.Add(Console.ReadLine());
+        Dates.Add(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+        Prompts.Add(selectedPrompt);
     }
 }
