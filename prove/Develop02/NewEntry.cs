@@ -7,6 +7,18 @@ class NewEntry
     public List<string> prompts = new();
     public List<string> dates = new();
 
+    private static List<string> LoadPrompts()
+    {
+        string filePath = "prompts.csv";
+        if (File.Exists(filePath))
+            return new List<string>(File.ReadAllLines(filePath));
+        else
+        {
+            Console.WriteLine($"Error: File {filePath} not found.");
+            return new List<string>();
+        }
+    }
+
     static string RandomPrompt() // gathers a random prompt from a csv file
     {
         // gather all the information from the csv file

@@ -1,18 +1,5 @@
-using System.Runtime.InteropServices;
-
 class Menu
 {
-    // user picks a prompt
-    // 1. Write a new entry
-    //      Use the NewEntry class
-    // 2. Display the journal
-    //      Display every entry from the journal selected
-    // 3. Save the journal
-    //      Save the journal to the file
-    // 4. load the journal
-    //      Should replace any entires currently store in the journal
-    //      User inputs a file that already contains csv values
-
     public static void DisplayOptions()
     {
         string filePath = "options.csv";
@@ -21,10 +8,11 @@ class Menu
 
         do{
             Console.WriteLine("Please select from the following: ");
-            foreach(string option in lines)
+            foreach(string option in lines) // print out every element from the options.csv file
             {
                 Console.WriteLine(option);
             }
+
             Console.Write("Please enter your selection: ");
             NewEntry entry = new();
             EditFile file = new();
@@ -42,8 +30,7 @@ class Menu
                     file.DisplayJournal();
                     break;
                 case 3: // Save Journal
-                    EditFile userFile = new();
-                    userFile.SaveJournalEntry(entry.entries, entry.prompts, entry.dates);
+                    file.SaveJournalEntry(entry.entries, entry.prompts, entry.dates);
                     break;
                 case 4:
                     // file.LoadJournal();
