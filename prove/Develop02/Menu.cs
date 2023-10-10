@@ -5,37 +5,37 @@ class Menu
         string filePath = "options.csv";
         string[] lines = File.ReadAllLines(filePath);
         int choice;
+        NewEntry entry = new(); // Declare outside of the loop to maintain data
 
-        do{
+        do
+        {
             Console.WriteLine("Please select from the following: ");
-            foreach(string option in lines) // print out every element from the options.csv file
+            foreach (string option in lines) // print out every element from the options.csv file
             {
                 Console.WriteLine(option);
             }
 
-            Console.Write("Please enter your selection: ");
-            NewEntry entry = new();
-            EditFile file = new();
 
+            Console.Write("Please enter your selection: ");
             choice = int.Parse(Console.ReadLine());
 
-            switch(choice){
-                case 1: // New Entry
+            EditFile file = new();
+            switch (choice)
+            {
+                case 1:
                     entry.GetUserInput();
-                    entry.entries.Add(entry.entry);
-                    entry.prompts.Add(entry.prompt);
-                    entry.dates.Add(entry.date);
                     break;
-                case 2: // Display Journal
+                case 2:
                     file.DisplayJournal();
                     break;
                 case 3: // Save Journal
-                    file.SaveJournalEntry(entry.entries, entry.prompts, entry.dates);
+                    EditFile userFile = new();
+                    userFile.SaveJournalEntry(entry.entries, entry.prompts, entry.dates);
                     break;
                 case 4:
                     // file.LoadJournal();
                     break;
-            } 
+            }
         } while (choice != 5);
         Console.WriteLine("Have a great day!");
     }

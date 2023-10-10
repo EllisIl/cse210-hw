@@ -1,8 +1,8 @@
 class EditFile
 {
-    static string filepath;
+    private string filepath;
 
-    static void PromptUser()
+    private void PromptUser()
     {
         Console.Write("Please enter the filepath to your csv file: ");
         filepath = Console.ReadLine();
@@ -10,46 +10,46 @@ class EditFile
 
     public void SaveJournalEntry(List<string> entries, List<string> prompts, List<string> dates)
     {
-        //get the filepath
         PromptUser();
-
-        using (StreamWriter writer = new(filepath))
+        try
         {
-            //loop through each item in the lists
-            for (int i = 0; i < entries.Count; i++)
+            using (StreamWriter writer = new(filepath))
             {
-
-                //write each entry from the list into the csv file, separating using ~|
-                writer.WriteLine(string.Join("~|", prompts[i], entries[i], dates[i]));
+                for (int i = 0; i < entries.Count; i++)
+                {
+                    writer.WriteLine(string.Join("~|", prompts[i], entries[i], dates[i]));
+                }
             }
+            Console.WriteLine("Saved!");
         }
-        Console.WriteLine("Saved!");
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error: {ex.Message}");
+        }
     }
 
     public void DisplayJournal()
     {
-        //get the filepath
         PromptUser();
-
-        //create a class that will read the file
-        using (StreamReader reader = new(filepath))
+        try
         {
-            //loop while there is still content
-            while (!reader.EndOfStream)
+            using (StreamReader reader = new(filepath))
             {
-                //get the line and then split it using the preset seperating value
-                var line = reader.ReadLine();
-                var values = line.Split(new[] { "~|" }, StringSplitOptions.None);
-
-                //print each part of the entry
-                foreach (string value in values)
+                while (!reader.EndOfStream)
                 {
-                    Console.WriteLine(value);
+                    var line = reader.ReadLine();
+                    var values = line.Split(new[] { "~|" }, StringSplitOptions.None);
+                    foreach (string value in values)
+                    {
+                        Console.WriteLine(value);
+                    }
+                    Console.WriteLine();
                 }
-
-                //add and empty line at the end for formatting
-                Console.WriteLine();
             }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error: {ex.Message}");
         }
     }
 }
