@@ -1,17 +1,15 @@
-public class NewEntry
+public class Reading
 {
-    public List<string> prompts;
-
-    public string entry;
-
-    public string date;
-
-    // public static string RandPrompt(List<string> prompts){
-    //     // Return a random prompt from the list
-    // }
-
-    public void Print(){
-        Console.WriteLine(entry);
+    public void MakeDict()
+    {
+        var cities = new Dictionary<string, string>(){
+            {"UK", "London, Manchester, Birmingham"},
+            {"USA", "Chicago, New York, Washington"},
+            {"India", "Mumbai, New Delhi, Pune"}
+        };
+            
+        foreach(var kvp in cities)
+            Console.WriteLine("Key: {0}, Value: {1}", kvp.Key, kvp.Value);
     }
-
 }
+
