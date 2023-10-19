@@ -10,8 +10,18 @@ public class ScriptureRef
         "Proverbs 3:5-6"
     };
 
-    public int RefIndex;
-    public string Refer;
+    private int RefIndex;
+    private string Refer;
+
+    public int GetRefIndex()
+    {
+        return RefIndex;
+    }
+
+    public string GetRefer()
+    {
+        return Refer;
+    }
 
     public string RandRef() 
     {
@@ -21,7 +31,5 @@ public class ScriptureRef
 
         Refer = RefList[RefIndex];
         return RefList[randomIndex];
-
-        
     }
 }

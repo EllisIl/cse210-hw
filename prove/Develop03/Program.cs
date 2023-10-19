@@ -8,20 +8,20 @@ class Program
         NewRef.RandRef();
 
         ScriptureText NewText = new();
-        NewText.GetTextIndex(NewRef.RefIndex);
+        NewText.GetTextIndex(NewRef.GetRefIndex());
         NewText.ConvertTextToList();
 
         RemoveWord remWord = new();
-        remWord.SetPhrase(NewText.TextList, NewRef.Refer);
+        remWord.SetPhrase(NewText.GetTextList(), NewRef.GetRefer());
 
         remWord.PrintList();
 
-        remWord.RemoveElement(true);
+        remWord.RemoveElement();
 
 
-        while(remWord.ItemsRemoved < NewText.TextList.Count)
+        while(remWord.GetItemsRemoved() < NewText.GetTextList().Count)
         {
-            remWord.RemoveElement(false);
+            remWord.RemoveElement();
         }
     }
 }

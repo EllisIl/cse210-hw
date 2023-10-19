@@ -1,5 +1,7 @@
 class ScriptureText
 {
+    private int TextIndex;
+    private List<string> TextList = new();
     private List<string> TextsList = new()
     {
         "Therefore, take heed that ye see to this matter, and that portion that is necessary to benefit mine order, for the purpose of bringing forth my word to the children of men.",
@@ -10,8 +12,11 @@ class ScriptureText
         "5.Trust in the Lord with all thine heart; and lean not unto thine own understanding. 6.In all thy ways acknowledge him, and he shall direct thy paths."
     };
 
-    public int TextIndex;
-    public List<string> TextList = new();
+
+    public List<string> GetTextList()
+    {
+        return TextList;
+    }
     
     public void GetTextIndex(int index)
     {
