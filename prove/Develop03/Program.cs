@@ -16,12 +16,12 @@ class Program
 
         remWord.PrintList();
 
-        remWord.RemoveElement();
+        remWord.RemoveElements(1);
 
 
         while(remWord.GetItemsRemoved() < NewText.GetTextList().Count)
         {
-            remWord.RemoveElement();
+            remWord.RemoveElements(2);
         }
     }
 }
