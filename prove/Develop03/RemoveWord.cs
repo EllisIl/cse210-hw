@@ -1,5 +1,3 @@
-using System.Diagnostics.Tracing;
-
 class RemoveWord
 {
     private List<string> Phrase;
@@ -41,11 +39,26 @@ class RemoveWord
         }
     }
 
-    public void RemoveElement() // removes a random element in the list
+    public void RemoveElements(int count) // removes multiple random elements in the list
+{
+    for(int i = 0; i < count; i++)
     {
-        for(int i = 0; i < 2; i++){
-            int index;
-            do index = RandIndex(); while(Phrase[index].Contains('_')); // get a random index that does not contain underscores
+        int index;
+        int attempt = 0;
+        
+        do 
+        {
+            index = RandIndex();
+            attempt++;
+            
+            // Safety check to prevent infinite loop
+            if(attempt > Phrase.Count * 2) 
+            {
+                Console.WriteLine("Too many attempts to find a word to remove.");
+                return;
+            }
+        } 
+        while(Phrase[index].Contains('_')); // get a random index that does not contain underscores
 
             Phrase[index] = new string('_', Phrase[index].Length); // set the item in the list to a string with the same length of underscores
 
