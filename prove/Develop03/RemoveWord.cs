@@ -43,12 +43,14 @@ class RemoveWord
 
     public void RemoveElement() // removes a random element in the list
     {
-        int index;
-        do index = RandIndex(); while(Phrase[index].Contains('_')); // get a random index that does not contain underscores
+        for(int i = 0; i < 2; i++){
+            int index;
+            do index = RandIndex(); while(Phrase[index].Contains('_')); // get a random index that does not contain underscores
 
-        Phrase[index] = new string('_', Phrase[index].Length); // set the item in the list to a string with the same length of underscores
+            Phrase[index] = new string('_', Phrase[index].Length); // set the item in the list to a string with the same length of underscores
 
-        ItemsRemoved += 1;
-        PrintList(); // print out the newly changed list
+            ItemsRemoved += 1;
+            PrintList(); // print out the newly changed list
+        }    
     }
 }
