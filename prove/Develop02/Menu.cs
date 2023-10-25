@@ -10,11 +10,10 @@ class Menu
         do
         {
             Console.WriteLine("Please select from the following: ");
-            foreach (string option in lines) // print out every element from the options.csv file
+            foreach (string option in lines)
             {
                 Console.WriteLine(option);
             }
-
 
             Console.Write("Please enter your selection: ");
             choice = int.Parse(Console.ReadLine());
@@ -28,12 +27,8 @@ class Menu
                 case 2:
                     file.DisplayJournal();
                     break;
-                case 3: // Save Journal
-                    EditFile userFile = new();
-                    userFile.SaveJournalEntry(entry.entries, entry.prompts, entry.dates);
-                    break;
-                case 4:
-                    // file.LoadJournal();
+                case 3:
+                    file.SaveJournalEntry(entry.Entries, entry.Prompts, entry.Dates);
                     break;
             }
         } while (choice != 5);
