@@ -1,5 +1,30 @@
 class ListingActivity : Activity
 {
+<<<<<<< HEAD
+    private DateTime startTime;
+
+    private List<string> prompts = new()
+    {
+        "Who are people that you appreciate?",
+        "What are personal strengths of yours?",
+        "Who are people that you have helped this week?",
+        "When have you felt the Holy Ghost this month?",
+        "Who are some of your personal heroes?"
+    };
+
+    private List<string> things = new(){
+        
+    };
+
+    public void Listing(){
+        Console.WriteLine($"Think about the following prompt for {duration} seconds, and list as many things as you can. \nPress enter after each one.");
+        Console.WriteLine(DateTime.Now);
+        Console.WriteLine(GetActivityEnd());
+        while(DateTime.Now < GetActivityEnd())
+        {
+            Console.ReadLine();
+        }
+=======
     private List<string> prompts = new()
 {
     "Who are people that you appreciate?",
@@ -70,5 +95,6 @@ class ListingActivity : Activity
         }
         Console.WriteLine($"You listed {things.Count} items! Press enter to continue.");
         Console.ReadLine();
+>>>>>>> 54fe4bea82c529e302e1fb88abd1acd9db6ec9c3
     }
 }
