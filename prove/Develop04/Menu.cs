@@ -14,17 +14,10 @@ class Menu : Activity
         "This activity will help you reflect on the good things in your life by having you list as many things as you can in a certain area.",
         "This activity will help you reflect on times in your life when you have shown strength and resilience. This will help you recognize the power you have and how you can use it in other aspects of your life."
     };
-<<<<<<< HEAD
-
-    public void WorkMenu()
-    {
-        DisplayOptions();
-=======
     private string activityName;
 
     public void WorkMenu()
     {
->>>>>>> 54fe4bea82c529e302e1fb88abd1acd9db6ec9c3
         UserSelection();
     }
 
@@ -35,33 +28,6 @@ class Menu : Activity
             Console.WriteLine($"{i + 1}. {options[i]}\n\t{optionDescs[i]}");
         }
     }
-<<<<<<< HEAD
-   private void UserSelection()
-   {
-    int selection = int.Parse(PromptUser("Please make a selection (Type the number): \n"));
-    int userDurationTime = int.Parse(PromptUser("How long would you like to perform this activity? ")) * 1000;
-    SetDuration(userDurationTime);
-
-    switch(selection)
-    {
-        case 1:
-            BreathingActivity breathingActivity = new(); // new instance of Breathing activity
-            breathingActivity.Breathing(); // calls breathing function
-            break;
-        case 2:
-            ListingActivity listingActivity = new(); // new instance of Listing activity
-            listingActivity.Listing();
-            break;
-        case 3:
-            // ReflectionActivity reflectionActivity = new(); // new instance of Reflection activity
-            // do stuff
-            break;
-        default:
-            Console.WriteLine("Thanks!");
-            Environment.Exit(0); // Exits the program
-            break;
-    }
-=======
     private int PromptForInteger(string promptMessage)
     {
         while (true)
@@ -137,7 +103,5 @@ class Menu : Activity
         Console.Clear();
         Console.WriteLine($"Nice job! You spent {durationTime} seconds on the {activityName} activity. Either select another activity or press enter to exit the program.");
     }   
->>>>>>> 54fe4bea82c529e302e1fb88abd1acd9db6ec9c3
-    
    }
 }
