@@ -107,6 +107,5 @@ class Menu : Activity
         Console.Clear();
         Console.WriteLine($"Nice job! You spent {durationTime} seconds on the {activityName} activity. Either select another activity or press enter to exit the program.");
     }   
-    
    }
 }
