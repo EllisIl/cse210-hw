@@ -1,17 +1,30 @@
-class ChecklistGoal : Goal
+public class ChecklistGoal : Goal
 {
-    List<string> goalNames;
-    List<string> goalDescs;
-    List<int> goalPoints;
-    List<int> timesToComplete;
-    List<int> bigBonus;
+    List<int> timesToComplete = new List<int>();
+    List<int> bigBonus = new List<int>();
 
-    public override void CreateGoal(){
+
+    public ChecklistGoal(List<int> times, List<string> names, List<string> descs, List<int> points, List<bool> completions) : base(names, descs, points, completions){
+        timesToComplete = times;
+    }
+
+    public List<int> GetTimesToComplete()
+    {
+        return timesToComplete;
+    }
+
+    public List<int> GetBigBonus()
+    {
+        return bigBonus;
+    }
+
+    public override void CreateGoal()
+    {
         Console.Write("What is the name of your goal? ");
         string goalName = Console.ReadLine();
 
         Console.Write("What is a short description of your goal? ");
-        string goalDesc = Console.ReadLine(); 
+        string goalDesc = Console.ReadLine();
 
         Console.Write("How many times do you want to complete this goal before it is checked off? ");
         int timesCompleted = int.Parse(Console.ReadLine());
@@ -25,13 +38,48 @@ class ChecklistGoal : Goal
         goalNames.Add(goalName);
         goalDescs.Add(goalDesc);
         goalPoints.Add(points);
+        goalCompletions.Add(false);
         timesToComplete.Add(timesCompleted);
-        
-
-
+        bigBonus.Add(bonusPoints);
     }
-    public override void CompleteGoal(int index){
-        // Make sure the goal is completed x number of times before actually checked off as complete.
-        // last time completed adds normal points AND the Big Bonus!
+
+    public override int CompleteGoal(int userPoints)
+    {
+        List<string> goalNames = GetGoalNames();
+
+        if (goalNames.Count == 0)
+        {
+            Console.WriteLine("No goals in the selected category.");
+            return userPoints;
+        }
+
+        for (int i = 0; i < goalNames.Count; i++)
+        {
+            Console.WriteLine($"{i + 1}. {goalNames[i]} [Can complete {timesToComplete[i]} more times]");
+        }
+
+        Console.Write("Select the goal you would like to complete: ");
+        int selectedGoalIndex = int.Parse(Console.ReadLine()) - 1;
+
+        if (selectedGoalIndex >= 0 && selectedGoalIndex < goalNames.Count && timesToComplete[selectedGoalIndex] > 0)
+        {
+            Console.WriteLine("Goal completed successfully!");
+
+            timesToComplete[selectedGoalIndex]--;
+            userPoints += goalPoints[selectedGoalIndex];
+
+            if (timesToComplete[selectedGoalIndex] == 0)
+            {
+                // This is the last completion, add big bonus
+                userPoints += bigBonus[selectedGoalIndex];
+                goalCompletions[selectedGoalIndex] = true;
+            }
+        }
+        else
+        {
+            Console.WriteLine("Invalid goal selection or you have already completed this goal the maximum number of times.");
+        }
+
+        return userPoints;
     }
 }
