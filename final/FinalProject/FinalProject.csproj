@@ -8,4 +8,8 @@
     <Nullable>disable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="discord.net" Version="3.13.0" />
+  </ItemGroup>
+
 </Project>
