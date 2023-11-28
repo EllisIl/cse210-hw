@@ -1,9 +1,9 @@
-class EternalGoal : Goal
+public class EternalGoal : Goal
 {
-    List<string> goalNames;
-    List<string> goalDescs;
-    List<int> goalPoints;
 
+    public EternalGoal(List<string> names, List<string> descs, List<int> points, List<bool> completions) : base(names, descs, points, completions){
+
+    }
     public override void CreateGoal(){
         Console.Write("What is the name of your goal? ");
         string goalName = Console.ReadLine();
@@ -16,10 +16,39 @@ class EternalGoal : Goal
 
         goalNames.Add(goalName);
         goalDescs.Add(goalDesc);
+        goalCompletions.Add(false);
         goalPoints.Add(points);
     }
-    public override void CompleteGoal(int index){
-        // never completes, just add points
-        
+    public override int CompleteGoal(int userPoints)
+    {
+        List<string> goalNames = GetGoalNames();
+        while(true){
+            if (goalNames.Count > 0)
+            {
+                for (int i = 0; i < goalNames.Count; i++)
+                {
+                    Console.WriteLine($"{i + 1}. {goalNames[i]}");
+                }
+                
+                Console.Write("Select the goal you would like to complete: ");
+
+                int selectedGoalIndex = int.Parse(Console.ReadLine()) - 1;
+
+                if (selectedGoalIndex >= 0 && selectedGoalIndex <= goalNames.Count)
+                {
+                    Console.WriteLine("Goal completed successfully!");
+                    return userPoints += goalPoints[selectedGoalIndex];
+                }
+                else
+                {
+                    Console.WriteLine("Invalid goal selection. Please choose a valid goal.");
+                }
+            }
+            else
+            {
+                Console.WriteLine("No goals in the selected category.");
+                return userPoints;
+            }
+        }
     }
 }
