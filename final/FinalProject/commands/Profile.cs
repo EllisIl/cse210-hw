@@ -1,4 +1,4 @@
-using Discord.Rest;
+using Discord;
 using Discord.WebSocket;
 
 class Profile : SlashCommand

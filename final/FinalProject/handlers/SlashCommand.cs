@@ -5,11 +5,9 @@ using Newtonsoft.Json;
 
 public class SlashCommand : Command
 {
-    public DiscordSocketClient client;
     private string commandDesc;
 
-    public SlashCommand(DiscordSocketClient newClient, string newCommandDesc, string newCommandName) : base(newCommandName){
-        client = newClient;
+    public SlashCommand(DiscordSocketClient newClient, string newCommandDesc, string newCommandName) : base(newClient, newCommandName){
         commandDesc = newCommandDesc;
     }
     
