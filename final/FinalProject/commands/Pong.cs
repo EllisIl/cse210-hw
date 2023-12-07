@@ -1,11 +1,12 @@
-using Discord;
 using Discord.WebSocket;
-
 class Pong : TextCommand
 {
-    string userName;
+    public Pong(DiscordSocketClient newClient, string newCommandName, string newPrefix) : base(newClient, newCommandName, newPrefix)
+    {
+    }
 
-    public Pong(DiscordSocketClient newClient, string newCommandName, string newPrefix) : base(newClient, newCommandName, newPrefix) {
-
+    public async Task Respond(SocketSlashCommand command)
+    {
+        await command.RespondAsync($"Pong! Latency is {client.Latency}ms.");
     }
 }

@@ -3,14 +3,15 @@ using Discord.Net;
 using Discord.WebSocket;
 using Newtonsoft.Json;
 
-public class SlashCommand : Command
+abstract public class SlashCommand : Command
 {
     private string commandDesc;
 
-    public SlashCommand(DiscordSocketClient newClient, string newCommandDesc, string newCommandName) : base(newClient, newCommandName){
+    public SlashCommand(DiscordSocketClient newClient, string newCommandDesc, string newCommandName) : base(newClient, newCommandName)
+    {
         commandDesc = newCommandDesc;
     }
-    
+
     public async Task CreateCommand()
     {
         var guild = client.GetGuild(924825389061275659);
@@ -24,10 +25,12 @@ public class SlashCommand : Command
             await guild.CreateApplicationCommandAsync(guildCommand.Build());
             Console.WriteLine($"Added {commandName} command");
         }
-        catch(HttpException exception)
+        catch (HttpException exception)
         {
             var json = JsonConvert.SerializeObject(exception.Errors, Formatting.Indented);
             Console.WriteLine(json);
         }
     }
+
+    abstract public Task Respond(SocketSlashCommand command);
 }
